@@ -1,20 +1,20 @@
-из импорта айограммы Бот, Диспетчер, исполнитель, типы
-из айограммы.СДЕЛКА свой вклад.fsm_storage.память импорт MemoryStorage
-импортировать асинхронный код
+from aiogram import Bot, Dispatcher, executor, types
+from aiogram.contrib.fsm_storage.memory import MemoryStorage
+import asyncio
 
-API = "ххххххххххххххххххххх"
-бот = Бот(токен=API)
-дп = Диспетчер (бот, хранилище = ПамятьХранение())
+api = "7797685631:AAGpndoOqsnkCjQAofaMzmw3Vfp0lIe7zxA"
+bot = Bot(token=api)
+dp = Dispatcher(bot, storage=MemoryStorage())
 
 
-@dp.message_handler(команда=['начинать'])
-асинхронная защита начинать (сообщение):
-    жду сообщения.ответ("Привет, я бот, помогающий твоему здоровью.")
+@dp.message_handler(commands=['start'])
+async def start(message):
+    await message.answer("Привет я бот помогающий твоему здоровью.")
 
 @dp.message_handler()
-асинхронная защита all_massages (сообщение):
-    жду сообщения.ответ("Введите команду /start, чтобы начать общение.")
+async def all_massages(message):
+    await message.answer("Введите команду /start, чтоб начать общение.")
 
 
-если __Имя__ == "__основной__":
-    исполнитель.start_polling(dp,skip_updates=Истинный)
+if __name__ == "__main__":
+    executor.start_polling(dp, skip_updates=True)
